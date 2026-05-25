@@ -38,123 +38,181 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to find the average length of names for people living in Chennai?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+
+name        TEXT   
+
+city        TEXT
+
+email       TEXT
+
+phone       INTEGER
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT AVG(LENGTH(name)) AS avg_name_length FROM customer WHERE  city="Chennai";
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1202" height="312" alt="image" src="https://github.com/user-attachments/assets/d3c35201-8574-4abb-997f-ea87cf94d359" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to find the number of employees who are having the same age removing the duplicate values.
+
+Sample table: employee
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT COUNT(DISTINCT(age)) AS COUNT FROM employee;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1202" height="309" alt="image" src="https://github.com/user-attachments/assets/16de4f8e-1361-43c5-ad1d-471deee6f844" />
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to find the total income of employees aged 40 or above.
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+
+name        TEXT
+
+age         INTEGER
+
+city        TEXT
+
+income      INTEGER
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT SUM(income) AS total_income FROM employee WHERE age>=40;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1194" height="317" alt="image" src="https://github.com/user-attachments/assets/deab0778-e3c8-4197-94fd-3879fa01d5f4" />
 
 **Question 4**
 ---
--- Paste Question 4 here
+How many patients are there in each city?
+
+Sample table: Patients Table
+
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT Address,COUNT(patientID) AS TotalPatients FROM Patients GROUP BY Address;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1199" height="415" alt="image" src="https://github.com/user-attachments/assets/e97242d1-045a-40b4-b371-9eba4ccf97fb" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+What is the total number of medications prescribed for each patient?
+
+Sample tablePrescriptions Table
+
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT PatientID,COUNT(Medication) AS TotalMedications FROM Prescriptions GROUP BY PatientID;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1205" height="766" alt="image" src="https://github.com/user-attachments/assets/1525cda8-2737-4c38-9087-93c691833356" />
 
 **Question 6**
 ---
--- Paste Question 6 here
+How many patients are there in each age group category (e.g., under 20, 20-30, 30-40, etc.)?
+
+Sample table: Patients Table
+
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT 
+    CASE 
+    WHEN strftime("%Y","2025-01-01")-strftime("%Y",DateOfBirth) BETWEEN 20 AND 30 THEN '20-30'
+    WHEN strftime("%Y","2025-01-01")-strftime("%Y",DateOfBirth) BETWEEN 31 AND 40 THEN '31-40'
+    WHEN strftime("%Y","2025-01-01")-strftime("%Y",DateOfBirth) BETWEEN 41 AND 50 THEN '41-50'
+    ELSE 'Above 50'
+    END AS AgeGroup,
+    COUNT(*) AS TotalPatients
+FROM Patients
+GROUP BY AgeGroup
+ORDER BY AgeGroup;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1218" height="460" alt="image" src="https://github.com/user-attachments/assets/357c4046-76c0-4c54-986e-9ccd353665fd" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the maximum work hours for each date, and excludes dates where the maximum work hour is not greater than 12.
+
+Sample table: employee1
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT jdate,MAX(workhour) AS "MAX(workhour)" FROM employee1 GROUP BY jdate HAVING MAX(workhour)>12;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1205" height="393" alt="image" src="https://github.com/user-attachments/assets/a62eba0b-118c-49b1-b115-ed5f84563a0b" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the average work hours for each date, and excludes dates where the average work hour is not less than 10.
+
+Sample table: employee1
+
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT jdate,AVG(workhour) AS "AVG(workhour)" FROM employee1 GROUP BY jdate HAVING AVG(workhour)<10;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1195" height="337" alt="image" src="https://github.com/user-attachments/assets/2d0b3d84-de3a-49a6-b97c-6e93a1f50a1b" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
+
+Sample table: employee
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT city,SUM(income) AS Income FROM employee GROUP BY city HAVING Income>200000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1198" height="538" alt="image" src="https://github.com/user-attachments/assets/bacac462-0e4c-452f-bfa1-92de6c6c7b04" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the minimum work hours for each date, and excludes dates where the minimum work hour is not less than 10.
 
+Sample table: employee1
 ```sql
--- Paste your SQL code below for Question 10
+SELECT jdate,MIN(workhour) AS "MIN(workhour)" FROM employee1 GROUP BY jdate HAVING MIN(workhour)<10;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1212" height="452" alt="image" src="https://github.com/user-attachments/assets/64cb0534-fd46-4e0d-b2d1-81a1516667a2" />
 
 
 ## RESULT
