@@ -7,6 +7,8 @@ To understand and apply ER modeling concepts by creating ER diagrams for real-wo
 Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
 ---
+## NAME: JANAGIRAMAN.M
+## REG NO:212224230101
 
 # Scenario A: City Fitness Club Management
 
