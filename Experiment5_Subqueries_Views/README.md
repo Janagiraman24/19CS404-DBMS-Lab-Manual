@@ -38,123 +38,237 @@ DROP VIEW view_name;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to Retrieve the medications with dosages equal to the lowest dosage
+
+Medications Table
+
+
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT medication_id AS medic,medication_name,dosage FROM Medications WHERE dosage<=(SELECT MIN(dosage) FROM Medications);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1197" height="393" alt="image" src="https://github.com/user-attachments/assets/345ba10b-e2d9-4803-b633-53e5b607dd59" />
 
 **Question 2**
 ---
--- Paste Question 2 here
+From the following tables write a SQL query to find the order values greater than the average order value of 10th October 2012. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
+
+Note: date should be yyyy-mm-dd format
+
+ORDERS TABLE
+
+name            type
+----------     ----------
+ord_no          
+
+purch_amt    real
+
+ord_date       text
+
+customer_id  int
+
+salesman_id  int
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT *
+FROM orders
+WHERE purch_amt>(SELECT AVG(purch_amt) FROM orders WHERE ord_date='2012-10-10');
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1200" height="485" alt="image" src="https://github.com/user-attachments/assets/46593bde-4e3f-4721-a0a8-d885044865cd" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+From the following tables, write a SQL query to find those salespeople who earned the maximum commission. Return ord_no, purch_amt, ord_date, and salesman_id.
+
+salesman table
+
+name             type
+---------------  ---------------
+salesman_id      numeric(5)
+
+name                 varchar(30)
+
+city                    varchar(15)
+
+commission       decimal(5,2)
+
+
+orders table
+
+name             type
+---------------  --------
+order_no         int
+
+purch_amt        real
+
+order_date       text
+
+customer_id      int
+
+salesman_id      int
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT ord_no, purch_amt, ord_date, salesman_id FROM orders 
+WHERE salesman_id IN (SELECT salesman_id FROM salesman WHERE commission=(SELECT MAX(commission) FROM salesman));
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1194" height="474" alt="image" src="https://github.com/user-attachments/assets/3e8c807a-d9a3-45d2-b1e9-d6e83f850aa4" />
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a query to display all the customers whose ID is the difference between the salesperson ID of Mc Lyon and 2001.
+
+salesman table
+
+name             type
+---------------  ---------------
+salesman_id      numeric(5)
+
+name                 varchar(30)
+
+city                    varchar(15)
+
+commission       decimal(5,2)
+
+customer table
+
+name         type
+-----------  ----------
+
+customer_id  int
+
+cust_name    text
+
+city         text
+
+grade        int
+
+salesman_id  int
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT * FROM customer 
+WHERE customer_id IN (SELECT (salesman_id-2001) FROM salesman WHERE name="Mc Lyon");
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1204" height="339" alt="image" src="https://github.com/user-attachments/assets/07b1eff7-28b8-4089-9b91-0d7c2234923a" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is LESS than $2500.
+
+Sample table: CUSTOMERS
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT * FROM CUSTOMERS WHERE salary<2500;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1192" height="452" alt="image" src="https://github.com/user-attachments/assets/ac51fef4-e332-4496-85a9-ebc4ae362a63" />
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query that retrieves the names of students and their corresponding grades, where the grade is equal to the minimum grade achieved in each subject.
+
+Sample table: GRADES
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT student_name,grade FROM GRADES g1 WHERE GRADE =(SELECT MIN(grade) FROM GRADES g2 WHERE g1.subject=g2.subject);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1205" height="442" alt="image" src="https://github.com/user-attachments/assets/1a7ff589-f30f-4c2f-a5c3-1790e4b42328" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Find employees who have an age less than the average age of employees with incomes over 1 million
+
+Employee Table
+
+name             type
+
+------------   ---------------
+
+id                    INTEGER
+
+name              TEXT
+
+age                 INTEGER
+
+city                 TEXT
+
+income           INTEGER
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT * FROM Employee WHERE age<(SELECT AVG(age) FROM Employee WHERE income>1000000);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1203" height="426" alt="image" src="https://github.com/user-attachments/assets/4bb91d0f-6e3b-4fc9-b9dc-68e3d2278c3c" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to Retrieve the names and cities of customers who have the same city as customers with IDs 3 and 7
+
+SAMPLE TABLE: customer
+
+name             type
+---------------  ---------------
+id               INTEGER
+
+name             TEXT
+
+city             TEXT
+
+email            TEXT
+
+phone            INTEGER
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT name,city FROM customer WHERE city IN (SELECT city FROM customer WHERE id IN (3,7));
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1205" height="443" alt="image" src="https://github.com/user-attachments/assets/59409234-dc88-4d9f-9410-11d838967149" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose AGE is LESS than $30
 
+Sample table: CUSTOMERS
 ```sql
--- Paste your SQL code below for Question 9
+SELECT * FROM CUSTOMERS WHERE AGE<30;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1199" height="587" alt="image" src="https://github.com/user-attachments/assets/146581f5-301a-4b7c-9c5b-f5d3aa91c615" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+From the following tables write a SQL query to find all orders generated by London-based salespeople. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id FROM Orders WHERE salesman_id IN (SELECT salesman_id FROM Salesman WHERE city='London');
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1204" height="435" alt="image" src="https://github.com/user-attachments/assets/41cd2cd3-bf2e-494d-9619-b5fc49800442" />
 
 
 ## RESULT
